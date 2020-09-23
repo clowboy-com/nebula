@@ -104,11 +104,11 @@ def ban(bot, chat, admin, user, options):
         parse_mode="HTML"
     )
     bot.send_message(Config.LOG_CHANNEL,
-        text="<b>UTENTE BANNATO!</b>\n"\
-            "ID: {id}\n"\
-            "USERNAME: {username}\n"\
-            "GRUPPO: {chat}\n"\
-            "MOTIVO: {motivation}"
+        text="<b>#Log User Banned!</b>\n"\
+            "User_Id: {id}\n"\
+            'Username: <a href="tg://user?id={id}">{username}</a>\n'\
+            "Group: {chat}\n"\
+            "Motivation: {motivation}"
             .format(
                 username=user.username or user.first_name,
                 id=user.id,

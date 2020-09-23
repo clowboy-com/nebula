@@ -1,5 +1,6 @@
 import datetime
 import core.decorators
+from config import Config
 from core.sql.db_connect import Connection
 from core.sql.commands_sql import Sql_Superban
 from core.utility.strings import str_service
@@ -26,6 +27,18 @@ def init(update, context):
                          text="You got super banned <code>{id}</code> !!!\n Go to https://hersel.it/apinebula.php"
                          .format(id=update.message.reply_to_message.from_user.id),
                          parse_mode='HTML')
+        bot.send_message(Config.LOG_CHANNEL,
+        text="<b>#Log User Superbanned!</b>\n"\
+            "User_Id: {id}\n"\
+            "Motivation: {motivation}\n"\
+            "Datetime: {timestamp}\n"\
+            "Operator_id: {operator}"
+            .format(
+                operator=operator_id,
+                id=save_user_id,
+                timestamp=save_date,
+                motivation=message),
+                parse_mode="HTML")
     else:
         bot.send_message(update.message.chat_id,str_service.MESSAGE_SB,
                          parse_mode='HTML')
